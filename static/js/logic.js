@@ -28,6 +28,7 @@ $("body").on("click", "button", function(ev) {
 
     // Button press will setup for answering x questions.
     if ($(this).attr("value") == "10Questions") {
+        correctTotal = 0
         questionIndex = 0;
         questionsTotal = 3;
         $(".mainContent").empty();
@@ -36,6 +37,7 @@ $("body").on("click", "button", function(ev) {
 
     // Button press will setup for answering all questions.
     if ($(this).attr("value") == "fullQuestions") {
+        correctTotal = 0;
         questionIndex = 0;
         questionsTotal = problems.length;
         $(".mainContent").empty();
@@ -47,8 +49,6 @@ $("body").on("click", "button", function(ev) {
         var response = $('#answerInput').val();
         $(".mainContent").empty();
         DisplayResults($(".mainContent"), response, problems[questionIndex].answers);
-        
-
     }
 
     // Button press will move on from seeing answer.
@@ -61,10 +61,14 @@ $("body").on("click", "button", function(ev) {
             //Need to setup Results display.
             $(".mainContent").append("<p>End</p>")
             $(".mainContent").append("<p>You got "+correctTotal+ " out of "+questionsTotal+".</p>")
-            
+            $(".mainContent").append("<button class='btn btn-primary' value='questionsSelect'>Home</button>");
         }
     }
+    if ($(this).attr("value") == "questionsSelect") {
+        $(".mainContent").empty();
+        StartInterface($(".mainContent"));
 
+    }
     if ($(this).attr("value") == "clear") {
         $(".mainContent").empty();
 
