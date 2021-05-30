@@ -31,6 +31,7 @@ $("body").on("click", "button", function(ev) {
         correctTotal = 0
         questionIndex = 0;
         questionsTotal = 3;
+        shuffle(problems);
         $(".mainContent").empty();
         ProblemDisplay($(".mainContent"), problems[questionIndex].question);
     }
@@ -40,6 +41,7 @@ $("body").on("click", "button", function(ev) {
         correctTotal = 0;
         questionIndex = 0;
         questionsTotal = problems.length;
+        shuffle(problems);
         $(".mainContent").empty();
         ProblemDisplay($('.mainContent'), problems[questionIndex].question);
     }
@@ -111,3 +113,18 @@ function DisplayResults(element, response, answer){
     }
     element.append("<button class='btn btn-primary' type='submit' value='next'>Next</button>");
 }
+
+const shuffle = (array) => {
+
+    // loop all elements
+    for (let i = array.length - 1; i > 0; i--) {
+
+        // pickup a random element
+        const j = Math.floor(Math.random() * i);
+        const temp = array[i];
+
+        // swap it with the current element
+        array[i] = array[j];
+        array[j] = temp;
+    }
+};
